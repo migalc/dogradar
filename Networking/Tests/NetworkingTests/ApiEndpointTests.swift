@@ -58,13 +58,9 @@ private extension ApiEndpointTests {
     }
 }
 
-// MARK: - Stubs
-
-private struct AnyError: Error, Equatable { }
-
 // MARK: - Test doubles
 
-private final class URLRequestFactorySpy: URLRequestFactoryProtocol {
+private final class URLRequestFactorySpy: URLRequestFactoryable {
     private(set) var makeInputs: [(baseURI: String, path: String?, method: HTTPMethod, headers: [String : String]?)] = []
     var makeResult: Result<URLRequest, Error> = .success(.init(url: .init(string: "make")!))
 
