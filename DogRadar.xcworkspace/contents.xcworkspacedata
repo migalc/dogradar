@@ -5,6 +5,9 @@
       location = "container:Modules/SharedUtils">
    </FileRef>
    <FileRef
+      location = "group:Modules/DogListing">
+   </FileRef>
+   <FileRef
       location = "group:Networking">
    </FileRef>
    <FileRef
