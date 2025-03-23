@@ -7,6 +7,7 @@
 
 import Foundation
 import Testing
+import TestingUtils
 @testable import Networking
 
 struct ApiEndpointTests {
