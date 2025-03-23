@@ -15,7 +15,7 @@ public protocol ApiEndpoint {
 }
 
 public extension ApiEndpoint {
-    func buildRequest(using factory: URLRequestFactoryProtocol? = nil) throws -> URLRequest {
+    func buildRequest(using factory: URLRequestFactoryable? = nil) throws -> URLRequest {
         try (factory ?? URLRequestFactory())
             .make(
                 baseURI: baseURI,

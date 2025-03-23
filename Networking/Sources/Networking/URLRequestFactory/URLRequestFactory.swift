@@ -7,18 +7,7 @@
 
 import Foundation
 
-enum URLRequestFactoryError: Error, Equatable {
-    case invalidURI(String)
-}
-
-public protocol URLRequestFactoryProtocol {
-    func make(baseURI: String,
-                      path: String?,
-                      method: HTTPMethod,
-                      headers: [String : String]?) throws -> URLRequest
-}
-
-struct URLRequestFactory: URLRequestFactoryProtocol {
+struct URLRequestFactory: URLRequestFactoryable {
     init() { }
 
     func make(baseURI: String,
