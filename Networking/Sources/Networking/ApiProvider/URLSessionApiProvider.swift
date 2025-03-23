@@ -21,11 +21,6 @@ public struct URLSessionApiProvider: ApiProvidable {
     public func call(with request: URLRequest) async throws -> (Data, URLResponse) {
         try await session.data(for: request, delegate: nil)
     }
-
-    public func call<T>(with request: URLRequest, using decoder: JSONDecoder) async throws -> T where T : Decodable {
-        let data = try await call(with: request).0
-        return try decoder.decode(T.self, from: data)
-    }
 }
 
 // MARK: - Default extension for native URLSession

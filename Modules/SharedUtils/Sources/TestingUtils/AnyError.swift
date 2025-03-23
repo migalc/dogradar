@@ -7,4 +7,6 @@
 
 import Foundation
 
-struct AnyError: Error, Equatable { }
+public struct AnyError: Error, Equatable {
+    public init() {}
+}

@@ -8,6 +8,7 @@
 import Foundation
 @testable import Networking
 import Testing
+import TestingUtils
 
 struct URLSessionApiProviderTests {
     private var urlSessionSpy: URLSessionSpy
