@@ -12,7 +12,7 @@ public protocol ApiProvidable {
 }
 
 public extension ApiProvidable {
-    func call<T: Decodable>(with request: URLRequest, using decoder: JSONDecoder) async throws -> T {
+    func call<T: Decodable>(request: URLRequest, using decoder: JSONDecoder = JSONDecoder()) async throws -> T {
         let data = try await call(with: request).0
         return try decoder.decode(T.self, from: data)
     }

@@ -55,22 +55,6 @@ private extension URLSessionApiProviderTests {
     }
 }
 
-// MARK: - Stubs
-
-private extension URL {
-    static var stub: URL { .init(string: "string")! }
-}
-
-private extension URLRequest {
-    static var stub: URLRequest { .init(url: URL.stub) }
-}
-
-private extension URLResponse {
-    static var stub: URLResponse {
-        .init(url: URL.stub, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
-    }
-}
-
 // MARK: - Test doubles
 
 private final class URLSessionSpy: URLSessionable {
