@@ -10,6 +10,7 @@ import Networking
 
 public protocol APIClient {
     func fetchDogBreeds() async throws -> DTO.ListResponse
+    func getDogBreedRandomImageUrl(for breedName: String) async throws -> DTO.RandomImageResponse
 }
 
 public struct DogAPIClient: APIClient {
@@ -21,6 +22,11 @@ public struct DogAPIClient: APIClient {
     
     public func fetchDogBreeds() async throws -> DTO.ListResponse {
         let endpoint = try DogEndpoint.list.buildRequest()
+        return try await apiProvidable.call(request: endpoint)
+    }
+
+    public func getDogBreedRandomImageUrl(for breedName: String) async throws -> DTO.RandomImageResponse {
+        let endpoint = try DogEndpoint.randomImage(breedName: breedName).buildRequest()
         return try await apiProvidable.call(request: endpoint)
     }
 }

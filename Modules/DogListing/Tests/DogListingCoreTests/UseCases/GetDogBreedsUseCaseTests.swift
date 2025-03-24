@@ -48,15 +48,3 @@ private extension GetDogBreedsUseCaseTests {
         GetDogBreedsUseCase(repository: repositorySpy)
     }
 }
-
-// MARK: - Test doubles
-
-private final class DogListingRepositorySpy: DogListingRepositoryable {
-    var getDogBreedsCallCount = 0
-    var getDogBreedsResult: Result<[Breed], Error> = .success([])
-    
-    func getDogBreeds() async throws -> [Breed] {
-        getDogBreedsCallCount += 1
-        return try getDogBreedsResult.get()
-    }
-}
