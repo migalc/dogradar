@@ -15,6 +15,9 @@ let package = Package(
         .library(
             name: "ListFeature",
             targets: ["ListFeature", "DogListingCore"]),
+        .library(
+            name: "DetailFeature",
+            targets: ["DetailFeature", "DogListingCore"]),
     ],
     dependencies: [
         .package(path: "../Networking"),
@@ -52,6 +55,7 @@ let package = Package(
             name: "ListFeature",
             dependencies: [
                 "DogListingCore",
+                "DetailFeature",
                 "UIComponents"
             ]
         ),
@@ -63,5 +67,19 @@ let package = Package(
             ]
         ),
         
+        .target(
+            name: "DetailFeature",
+            dependencies: [
+                "DogListingCore",
+                "UIComponents"
+            ]
+        ),
+        .testTarget(
+            name: "DetailFeatureTests",
+            dependencies: [
+                "DetailFeature",
+                .product(name: "TestingUtils", package: "SharedUtils")
+            ]
+        ),
     ]
 )

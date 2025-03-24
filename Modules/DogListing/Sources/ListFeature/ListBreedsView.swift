@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIComponents
+import DetailFeature
 
 // MARK: - Factory
 
@@ -23,10 +24,15 @@ public struct ListBreedsView<VM: ListBreedsViewModeling>: View {
     @State private var searchText: String = ""
 
     public var body: some View {
-        content
-            .task { [viewModel] in
-                await viewModel.getBreeds()
-            }
+        NavigationStack {
+            content
+                .navigationTitle(viewModel.title)
+                .navigationBarTitleDisplayMode(.inline)
+        }
+        .task { [viewModel] in
+            await viewModel.getBreeds()
+        }
+        
     }
 
     @ViewBuilder
@@ -40,6 +46,12 @@ public struct ListBreedsView<VM: ListBreedsViewModeling>: View {
                 .onChange(of: searchText) { _, value in
                     viewModel.filterBreeds(with: value)
                 }
+                .sheet(
+                    item: $viewModel.selectedBreed,
+                    content: {
+                        detailView(for: $0)
+                    }
+                )
         case .empty:
             Text("No breeds found.")
         case .error(let error):
@@ -56,11 +68,21 @@ public struct ListBreedsView<VM: ListBreedsViewModeling>: View {
     }
 
     private func listBreedsView(breeds: [Breed]) -> some View {
-        NavigationStack {
-            List(breeds) { breed in
-                CellRowView(text: breed.name)
-            }
+        List(breeds) { breed in
+            NavigationLink(
+                destination: { detailView(for: breed) },
+                label: { CellRowView(text: breed.name) }
+            )
         }
+    }
+}
+
+// MARK: - Navigation
+
+extension ListBreedsView {
+    func detailView(for breed: Breed) -> some View {
+        DetailBreedViewFactory.make(breed: breed.name,
+                                    getRandomImageForBreedUseCase: DIContainer.shared.getRandomImageForBreedUseCase)
     }
 }
 
@@ -70,6 +92,8 @@ import DogListingCore
 
 final class ListBreedsViewModelStub: ListBreedsViewModeling {
     @Published var state: ListBreedsViewModel.State
+    var selectedBreed: Breed?
+    var title: String = "Title"
     let loadingSubtitle: String = "loadingSubtitle"
 
     init(state: ListBreedsViewModel.State = .empty) {

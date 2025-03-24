@@ -13,7 +13,9 @@ import SwiftUI
 
 public protocol ListBreedsViewModeling: ObservableObject {
     var state: ListBreedsViewModel.State { get }
+    var title: String { get }
     var loadingSubtitle: String { get }
+    var selectedBreed: Breed? { get set }
 
     func getBreeds() async
     func filterBreeds(with text: String)
@@ -31,7 +33,9 @@ public final class ListBreedsViewModel: ListBreedsViewModeling {
 
     private let getBreedsUseCase: GetDogBreedsUseCaseable
 
+    public let title = "Dogs"
     public let loadingSubtitle: String = "Loading list..."
+    @Published public var selectedBreed: Breed?
     @Published public var state: State = .loading
     private var fetchedBreeds: [Breed] = []
 
