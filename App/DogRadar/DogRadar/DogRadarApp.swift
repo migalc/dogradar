@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import DogListingCore
+import ListFeature
 
 @main
 struct DogRadarApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DIContainer.listView()
         }
     }
 }

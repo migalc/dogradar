@@ -14,6 +14,10 @@ public protocol APIClient {
 
 public struct DogAPIClient: APIClient {
     let apiProvidable: ApiProvidable
+
+    public init(apiProvidable: ApiProvidable) {
+        self.apiProvidable = apiProvidable
+    }
     
     public func fetchDogBreeds() async throws -> DTO.ListResponse {
         let endpoint = try DogEndpoint.list.buildRequest()

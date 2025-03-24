@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE07DA7F2D918D6F006C0B8E /* DogListing in Frameworks */ = {isa = PBXBuildFile; productRef = EE07DA7E2D918D6F006C0B8E /* DogListing */; };
+		EE07DA812D918D6F006C0B8E /* ListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EE07DA802D918D6F006C0B8E /* ListFeature */; };
+		EE07DA832D918D6F006C0B8E /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EE07DA822D918D6F006C0B8E /* Networking */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EEAED9122D902AB10065B3A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE07DA832D918D6F006C0B8E /* Networking in Frameworks */,
+				EE07DA7F2D918D6F006C0B8E /* DogListing in Frameworks */,
+				EE07DA812D918D6F006C0B8E /* ListFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,11 +61,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE07DA772D918D03006C0B8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EEAED8F82D902AAF0065B3A0 = {
 			isa = PBXGroup;
 			children = (
 				EEAED9032D902AAF0065B3A0 /* DogRadar */,
 				EEAED9142D902AB10065B3A0 /* DogRadarTests */,
+				EE07DA772D918D03006C0B8E /* Frameworks */,
 				EEAED9022D902AAF0065B3A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +107,9 @@
 			);
 			name = DogRadar;
 			packageProductDependencies = (
+				EE07DA7E2D918D6F006C0B8E /* DogListing */,
+				EE07DA802D918D6F006C0B8E /* ListFeature */,
+				EE07DA822D918D6F006C0B8E /* Networking */,
 			);
 			productName = DogRadar;
 			productReference = EEAED9012D902AAF0065B3A0 /* DogRadar.app */;
@@ -444,6 +464,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE07DA7E2D918D6F006C0B8E /* DogListing */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DogListing;
+		};
+		EE07DA802D918D6F006C0B8E /* ListFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ListFeature;
+		};
+		EE07DA822D918D6F006C0B8E /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EEAED8F92D902AAF0065B3A0 /* Project object */;
 }

@@ -10,4 +10,12 @@ import Foundation
 public struct Breed: Codable, Equatable, Sendable {
     public let name: String
     public let subBreeds: [String]
+
+    public init(
+        name: String,
+        subBreeds: [String]
+    ) {
+        self.name = name
+        self.subBreeds = subBreeds
+    }
 }
