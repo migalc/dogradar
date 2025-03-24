@@ -10,6 +10,10 @@ import Networking
 
 struct DIContainer {
     static let shared = DIContainer()
+
+    func configure() {
+        ListFeature.DIContainer.shared.setApiProvider(Self.apiProvider)
+    }
 }
 
 // MARK: - Networking

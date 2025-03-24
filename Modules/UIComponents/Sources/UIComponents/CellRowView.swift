@@ -15,13 +15,8 @@ public struct CellRowView: View {
     }
 
     public var body: some View {
-        HStack {
-            Text(text)
-                .font(.caption)
-            Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundStyle(.gray)
-        }
+        Text(text)
+            .font(.caption)
     }
 }
 
