@@ -6,9 +6,11 @@
 //
 
 import DogListingAPI
+import Foundation
 
 protocol DogListingRepositoryable {
     func getDogBreeds() async throws -> [Breed]
+    func getRandomImage(for breed: String) async throws -> URL
 }
 
 struct DogListingRepository: DogListingRepositoryable {
@@ -19,6 +21,11 @@ struct DogListingRepository: DogListingRepositoryable {
         try await apiClient.fetchDogBreeds()
             .message
             .breedList.map(\.toDomainModel)
+    }
+
+    func getRandomImage(for breed: String) async throws -> URL {
+        try await apiClient.getDogBreedRandomImageUrl(for: breed)
+            .message
     }
 }
 

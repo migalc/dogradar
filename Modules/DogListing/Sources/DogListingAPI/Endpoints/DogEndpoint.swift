@@ -10,9 +10,10 @@ import Networking
 
 enum DogEndpoint: ApiEndpoint {
     case list
+    case randomImage(breedName: String)
 
     var baseURI: String {
-        "https://dog.ceo/api/breeds"
+        "https://dog.ceo/api"
     }
     
     var method: HTTPMethod {
@@ -21,8 +22,10 @@ enum DogEndpoint: ApiEndpoint {
 
     var path: String? {
         switch self {
-            case .list:
-            return "list/all"
+        case .list:
+            return "breeds/list/all"
+        case .randomImage(let breedName):
+            return "breed/\(breedName)/images/random"
         }
     }
 
