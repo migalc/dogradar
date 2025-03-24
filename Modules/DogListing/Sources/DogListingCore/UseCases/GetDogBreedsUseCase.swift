@@ -16,3 +16,14 @@ public struct GetDogBreedsUseCase: GetDogBreedsUseCaseable {
         try await repository.getDogBreeds()
     }
 }
+
+import Networking
+import DogListingAPI
+
+public struct GetDogBreedsUseCaseFactory {
+    public static func make(apiProvidable: ApiProvidable) -> GetDogBreedsUseCase {
+        let apiClient = DogAPIClient(apiProvidable: apiProvidable)
+        let repository = DogListingRepository(apiClient: apiClient)
+        return GetDogBreedsUseCase(repository: repository)
+    }
+}
