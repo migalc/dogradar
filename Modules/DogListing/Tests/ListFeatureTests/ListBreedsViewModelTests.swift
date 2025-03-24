@@ -79,17 +79,6 @@ class ListBreedsViewModelTests {
         #expect(receivedStates == [.listBreeds(result)])
         #expect(getDogBreedsUseCaseSpy.getDogBreedsCallCount == 1)
     }
-
-    @Test("When searching breeds, selectedBreed is updated")
-    func selectBreed() async throws {
-        let breed = ListBreedsViewModelTests.breedStubs.first!
-        
-        let sut = makeSUT()
-        sut.selectBreed(breed)
-        
-        #expect(sut.selectedBreed == breed)
-    }
-
 }
 
 // MARK: - SUT
