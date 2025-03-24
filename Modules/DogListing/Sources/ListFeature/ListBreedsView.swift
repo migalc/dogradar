@@ -36,6 +36,10 @@ public struct ListBreedsView<VM: ListBreedsViewModeling>: View {
             loadingView
         case .listBreeds(let breeds):
             listBreedsView(breeds: breeds)
+                .searchable(text: $searchText)
+                .onChange(of: searchText) { _, value in
+                    viewModel.filterBreeds(with: value)
+                }
         case .empty:
             Text("No breeds found.")
         case .error(let error):
@@ -73,6 +77,7 @@ final class ListBreedsViewModelStub: ListBreedsViewModeling {
     }
     
     func getBreeds() async {}
+    func filterBreeds(with text: String) {}
 }
 
 // MARK: > Loading

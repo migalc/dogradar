@@ -16,6 +16,7 @@ public protocol ListBreedsViewModeling: ObservableObject {
     var loadingSubtitle: String { get }
 
     func getBreeds() async
+    func filterBreeds(with text: String)
 }
 
 // MARK: - Implementation
@@ -32,6 +33,7 @@ public final class ListBreedsViewModel: ListBreedsViewModeling {
 
     public let loadingSubtitle: String = "Loading list..."
     @Published public var state: State = .loading
+    private var fetchedBreeds: [Breed] = []
 
     public init(getBreedsUseCase: GetDogBreedsUseCaseable) {
         self.getBreedsUseCase = getBreedsUseCase
@@ -40,9 +42,21 @@ public final class ListBreedsViewModel: ListBreedsViewModeling {
     public func getBreeds() async {
         do {
             let breeds = try await getBreedsUseCase.getDogBreeds()
+            fetchedBreeds = breeds
             await setState(to: breeds.isEmpty ? .empty : .listBreeds(breeds))
         } catch {
             await setState(to: .error(error))
+        }
+    }
+
+    public func filterBreeds(with text: String) {
+        Task {
+            guard !fetchedBreeds.isEmpty, !text.isEmpty else {
+                await setState(to: .listBreeds(fetchedBreeds))
+                return
+            }
+            let filteredBreeds = fetchedBreeds.filter { $0.name.contains(text.lowercased()) }
+            await setState(to: .listBreeds(filteredBreeds))
         }
     }
 }
